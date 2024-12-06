@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Wedding Timeline</title>
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        background-color: #fef9f4;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .widget {
+        background: #fffaf2;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 100%;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+      }
+
+      .widget-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #8c6954;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .timeline-container {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin: 20px 0;
+        padding: 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .timeline-event {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        width: 160px;
+        flex-shrink: 0;
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+      }
+
+      .timeline-event:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .event-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      .event-title {
+        font-weight: bold;
+        color: #8c6954;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .event-date {
+        font-size: 0.85rem;
+        color: #8c6954;
+      }
+
+      .event-location {
+        font-size: 0.75rem;
+        color: #8c6954;
+      }
+
+      .timeline-line {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 30px;
+        height: 2px;
+        background: #a67b5b;
+        transform: translateY(-50%);
+      }
+
+      .timeline-event:last-child .timeline-line {
+        display: none;
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .add-event-btn,
+      .remove-event-btn {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #a67b5b;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .add-event-btn:hover,
+      .remove-event-btn:hover {
+        background-color: #8c6954;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal.hidden {
+        display: none;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+        text-align: left;
+      }
+
+      .modal-content h2 {
+        color: #724a25;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .modal-content label {
+        display: block;
+        margin: 8px 0 4px;
+        font-size: 0.9rem;
+      }
+
+      .modal-content input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+
+      .submit-btn,
+      .close-modal {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #a67b5b;
+        color: white;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.2s;
+      }
+
+      .submit-btn:hover,
+      .close-modal:hover {
+        background-color: #8c6954;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="widget">
+      <h1 class="widget-title">Wedding Timeline</h1>
+      <div class="timeline-container"></div>
+      <div class="buttons-container">
+        <button class="add-event-btn">Add Event</button>
+        <button class="remove-event-btn">Remove Last Event</button>
+      </div>
+    </div>
+
+    <div class="modal hidden">
+      <div class="modal-content">
+        <h2>Add Event</h2>
+        <form id="event-form">
+          <label for="title">Event Title:</label>
+          <input type="text" id="title" required />
+          <label for="date">Event Date:</label>
+          <input type="date" id="date" required />
+          <label for="location">Location:</label>
+          <input type="text" id="location" required />
+          <label for="image">Event Image:</label>
+          <input type="file" id="image" accept="image/*" />
+          <button type="submit" class="submit-btn">Add</button>
+          <button class="close-modal">Close</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const addEventBtn = document.querySelector(".add-event-btn");
+      const removeEventBtn = document.querySelector(".remove-event-btn");
+      const modal = document.querySelector(".modal");
+      const closeModal = document.querySelector(".close-modal");
+      const eventForm = document.getElementById("event-form");
+      const timelineContainer = document.querySelector(".timeline-container");
+
+      let events = JSON.parse(localStorage.getItem("timelineEvents")) || [];
+
+      const sortEvents = () => {
+        events.sort((a, b) => new Date(a.date) - new Date(b.date));
+      };
+
+      const renderTimeline = () => {
+        sortEvents();
+        timelineContainer.innerHTML = events
+          .map(
+            (event) => `
+          <div class="timeline-event">
+            <img class="event-image" src="${event.image}" alt="${event.title}" />
+            <div class="event-title">${event.title}</div>
+            <div class="event-date">${event.date}</div>
+            <div class="event-location">${event.location}</div>
+            <div class="timeline-line"></div>
+          </div>
+        `
+          )
+          .join("");
+      };
+
+      const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
+        });
+
+      eventForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById("title").value;
+        const date = document.getElementById("date").value;
+        const location = document.getElementById("location").value;
+        const imageFile = document.getElementById("image").files[0];
+        const imageUrl = imageFile ? await toBase64(imageFile) : null;
+
+        const newEvent = { title, date, location, image: imageUrl };
+        events.push(newEvent);
+
+        localStorage.setItem("timelineEvents", JSON.stringify(events));
+        modal.classList.add("hidden");
+        eventForm.reset();
+        renderTimeline();
+      });
+
+      removeEventBtn.addEventListener("click", () => {
+        events.pop();
+        localStorage.setItem("timelineEvents", JSON.stringify(events));
+        renderTimeline();
+      });
+
+      addEventBtn.addEventListener("click", () =>
+        modal.classList.remove("hidden")
+      );
+      closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+
+      renderTimeline();
+    </script>
+  </body>
+</html>
