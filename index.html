@@ -146,35 +146,50 @@
       }
 
       .modal-content {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        width: 300px;
-        text-align: left;
+        background: #fffaf2;
+        padding: 25px;
+        border-radius: 15px;
+        width: 350px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.3s ease-in-out;
+        position: relative;
       }
 
       .modal-content h2 {
-        color: #724a25;
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+        font-size: 1.8rem;
+        color: #8c6954;
+        margin-bottom: 15px;
+        text-align: center;
       }
 
       .modal-content label {
+        font-size: 0.95rem;
+        font-weight: bold;
+        color: #6b4a3d;
+        margin-top: 10px;
         display: block;
-        margin: 8px 0 4px;
-        font-size: 0.9rem;
       }
 
       .modal-content input {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
+        width: calc(100% - 16px);
+        padding: 10px;
+        margin-top: 5px;
         border: 1px solid #ddd;
-        border-radius: 5px;
+        border-radius: 8px;
+        background: #fefcf8;
+        font-size: 0.95rem;
+        color: #6b4a3d;
+      }
+
+      .modal-content input:focus {
+        border-color: #a67b5b;
+        outline: none;
+        box-shadow: 0 0 4px rgba(166, 123, 91, 0.4);
       }
 
       .submit-btn,
       .close-modal {
+        width: 100%;
         font-family: "Playfair Display", serif;
         font-size: 1rem;
         padding: 10px 20px;
@@ -190,6 +205,17 @@
       .submit-btn:hover,
       .close-modal:hover {
         background-color: #8c6954;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
     </style>
   </head>
@@ -216,7 +242,7 @@
           <label for="image">Event Image:</label>
           <input type="file" id="image" accept="image/*" />
           <button type="submit" class="submit-btn">Add</button>
-          <button class="close-modal">Close</button>
+          <button type="button" class="close-modal">Close</button>
         </form>
       </div>
     </div>
@@ -267,14 +293,13 @@
         const date = document.getElementById("date").value;
         const location = document.getElementById("location").value;
         const imageFile = document.getElementById("image").files[0];
-        const imageUrl = imageFile ? await toBase64(imageFile) : null;
+        const image = imageFile ? await toBase64(imageFile) : "";
 
-        const newEvent = { title, date, location, image: imageUrl };
-        events.push(newEvent);
-
+        events.push({ title, date, location, image });
         localStorage.setItem("timelineEvents", JSON.stringify(events));
-        modal.classList.add("hidden");
+
         eventForm.reset();
+        modal.classList.add("hidden");
         renderTimeline();
       });
 
@@ -284,10 +309,13 @@
         renderTimeline();
       });
 
-      addEventBtn.addEventListener("click", () =>
-        modal.classList.remove("hidden")
-      );
-      closeModal.addEventListener("click", () => modal.classList.add("hidden"));
+      addEventBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.classList.add("hidden");
+      });
 
       renderTimeline();
     </script>
