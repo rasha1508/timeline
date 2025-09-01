@@ -3,321 +3,456 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Countdown</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Playfair+Display:wght@400;600&display=swap"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Wedding Timeline</title>
     <style>
-      body {
-        font-family: "Playfair Display", serif;
-        background-color: transparent;
+      * {
         margin: 0;
-        padding: 20px;
+        padding: 0;
+        box-sizing: border-box;
       }
 
-      .widget {
-        background: #fffaf2;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        max-width: 100%;
-        overflow-x: auto;
-        border: 1px solid #ddd;
-      }
-
-      .widget-title {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.5rem;
-        font-weight: 600;
-        color: #8c6954;
-        margin-bottom: 15px;
-        text-align: center;
-      }
-
-      .timeline-container {
+      body {
+        background: #fdf6f0; /* Cream/Ivory background */
         display: flex;
+        justify-content: center;
         align-items: center;
-        gap: 30px;
-        margin: 20px 0;
-        padding: 10px;
-        overflow-x: auto;
-        white-space: nowrap;
+        min-height: 100vh;
+        padding: 20px;
+        font-family: "Inter", sans-serif;
+        color: #4a4a4a; /* Slate Gray for text */
       }
 
-      .timeline-event {
-        display: inline-flex;
+      .widget-container {
+        width: 100%;
+        max-width: 800px; /* Increased width for horizontal layout */
+        height: 140px; /* Fixed height for horizontal bar */
+        background: #fdf6f0; /* Cream/Ivory main background */
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+        border: 1px solid rgba(74, 74, 74, 0.1);
+        display: flex;
+        flex-direction: row;
+      }
+
+      .widget-header {
+        background: #4a4a4a; /* Slate Gray for header */
+        color: white;
+        padding: 20px;
+        width: 160px; /* Fixed width for header section */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .widget-header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        margin-bottom: 8px;
+      }
+
+      .widget-header .subtitle {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        font-weight: 300;
+      }
+
+      .widget-content {
+        flex: 1;
+        padding: 16px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow-x: auto; /* Horizontal scrolling */
+        overflow-y: hidden;
+      }
+
+      .no-exams {
+        display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        width: 160px;
+        justify-content: center;
+        padding: 20px;
+        color: #4a4a4a;
+        opacity: 0.7;
+        text-align: center;
+        min-width: 300px;
+      }
+
+      .no-exams i {
+        font-size: 2rem;
+        color: #a3b18a;
+        margin-bottom: 12px;
+      }
+
+      .no-exams p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      .exam-countdown-list {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .exam-countdown-item {
+        background: white;
+        border-radius: 12px;
+        padding: 12px;
+        border: 1px solid rgba(74, 74, 74, 0.1);
+        transition: all 0.3s ease;
+        min-width: 180px;
+        max-width: 220px;
         flex-shrink: 0;
-        transition: transform 0.2s, box-shadow 0.2s;
-        position: relative;
-      }
-
-      .timeline-event:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      }
-
-      .event-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 10px;
-        object-fit: cover;
-      }
-
-      .event-title {
-        font-weight: bold;
-        color: #8c6954;
-        font-size: 1rem;
-        text-align: center;
-      }
-
-      .event-date {
-        font-size: 0.85rem;
-        color: #8c6954;
-      }
-
-      .event-location {
-        font-size: 0.75rem;
-        color: #8c6954;
-      }
-
-      .timeline-line {
-        position: absolute;
-        top: 50%;
-        left: 100%;
-        width: 30px;
-        height: 2px;
-        background: #a67b5b;
-        transform: translateY(-50%);
-      }
-
-      .timeline-event:last-child .timeline-line {
-        display: none;
-      }
-
-      .buttons-container {
         display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
-      .add-event-btn,
-      .remove-event-btn {
-        font-family: "Playfair Display", serif;
-        font-size: 1rem;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #a67b5b;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.2s;
+      .exam-countdown-item:hover {
+        border-color: #a3b18a;
+        box-shadow: 0 4px 12px rgba(163, 177, 138, 0.15);
       }
 
-      .add-event-btn:hover,
-      .remove-event-btn:hover {
-        background-color: #8c6954;
+      .exam-countdown-item.urgent {
+        border-left: 4px solid #a3b18a;
       }
 
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+      .exam-countdown-item.very-urgent {
+        border-left: 4px solid #4a4a4a;
+        background: linear-gradient(135deg, #fdf6f0 0%, #f0e6d2 100%);
+      }
+
+      .exam-countdown-item.overdue {
+        border-left: 4px solid #e8c9c0;
+        background: linear-gradient(135deg, #fdf6f0 0%, #fce8e6 100%);
+      }
+
+      .exam-name {
+        font-weight: 600;
+        color: #4a4a4a;
+        font-size: 0.9rem;
+        margin-bottom: 6px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        z-index: 1000;
+        gap: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .modal.hidden {
-        display: none;
+      .exam-name i {
+        color: #a3b18a;
+        font-size: 0.8rem;
+        flex-shrink: 0;
       }
 
-      .modal-content {
-        background: #fffaf2;
-        padding: 25px;
-        border-radius: 15px;
-        width: 350px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        animation: fadeIn 0.3s ease-in-out;
-        position: relative;
+      .exam-date {
+        font-size: 0.75rem;
+        color: #4a4a4a;
+        opacity: 0.8;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .modal-content h2 {
-        font-size: 1.8rem;
-        color: #8c6954;
-        margin-bottom: 15px;
-        text-align: center;
+      .exam-date i {
+        color: #a3b18a;
+        font-size: 0.7rem;
+        flex-shrink: 0;
       }
 
-      .modal-content label {
-        font-size: 0.95rem;
-        font-weight: bold;
-        color: #6b4a3d;
-        margin-top: 10px;
-        display: block;
+      .countdown-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
 
-      .modal-content input {
-        width: calc(100% - 16px);
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background: #fefcf8;
-        font-size: 0.95rem;
-        color: #6b4a3d;
+      .countdown-text {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #4a4a4a;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .modal-content input:focus {
-        border-color: #a67b5b;
-        outline: none;
-        box-shadow: 0 0 4px rgba(166, 123, 91, 0.4);
+      .countdown-text.urgent {
+        color: #a3b18a;
       }
 
-      .submit-btn,
-      .close-modal {
-        width: 100%;
-        font-family: "Playfair Display", serif;
-        font-size: 1rem;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #a67b5b;
+      .countdown-text.very-urgent {
+        color: #4a4a4a;
+      }
+
+      .countdown-text.overdue {
+        color: #4a4a4a;
+      }
+
+      .countdown-status {
+        align-self: flex-start;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: #e8f4f8;
+        color: #4a4a4a;
+        width: fit-content;
+      }
+
+      .countdown-status.upcoming {
+        background: #f0e6d2;
+        color: #4a4a4a;
+      }
+
+      .countdown-status.urgent {
+        background: #a3b18a;
         color: white;
-        cursor: pointer;
-        margin-top: 10px;
-        transition: background-color 0.2s;
       }
 
-      .submit-btn:hover,
-      .close-modal:hover {
-        background-color: #8c6954;
+      .countdown-status.very-urgent {
+        background: #4a4a4a;
+        color: white;
       }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
+      .countdown-status.overdue {
+        background: #e8c9c0;
+        color: #4a4a4a;
+      }
+
+      .exam-summary {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .summary-card {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid rgba(74, 74, 74, 0.1);
+        flex: 1;
+      }
+
+      .summary-number {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #4a4a4a;
+      }
+
+      .summary-label {
+        font-size: 0.7rem;
+        color: #4a4a4a;
+        opacity: 0.8;
+        margin-top: 1px;
       }
     </style>
   </head>
   <body>
-    <div class="widget">
-      <h1 class="widget-title">Wedding Timeline</h1>
-      <div class="timeline-container"></div>
-      <div class="buttons-container">
-        <button class="add-event-btn">Add Event</button>
-        <button class="remove-event-btn">Remove Last Event</button>
+    <div class="widget-container">
+      <div class="widget-header">
+        <h1>Exam Countdown</h1>
+        <div class="subtitle">Live Timers</div>
       </div>
-    </div>
-
-    <div class="modal hidden">
-      <div class="modal-content">
-        <h2>Add Event</h2>
-        <form id="event-form">
-          <label for="title">Event Title:</label>
-          <input type="text" id="title" required />
-          <label for="date">Event Date:</label>
-          <input type="date" id="date" required />
-          <label for="location">Location:</label>
-          <input type="text" id="location" required />
-          <label for="image">Event Image:</label>
-          <input type="file" id="image" accept="image/*" />
-          <button type="submit" class="submit-btn">Add</button>
-          <button type="button" class="close-modal">Close</button>
-        </form>
+      <div class="widget-content">
+        <div id="examCountdownList">
+          <div class="no-exams">
+            <i class="fas fa-graduation-cap"></i>
+            <p>
+              No upcoming exams found.<br />Add exams in the Assignment & Exam
+              Tracker to see countdowns here.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
-      const addEventBtn = document.querySelector(".add-event-btn");
-      const removeEventBtn = document.querySelector(".remove-event-btn");
-      const modal = document.querySelector(".modal");
-      const closeModal = document.querySelector(".close-modal");
-      const eventForm = document.getElementById("event-form");
-      const timelineContainer = document.querySelector(".timeline-container");
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to load assignments from localStorage
+        function loadAssignments() {
+          return JSON.parse(localStorage.getItem("assignments")) || [];
+        }
 
-      let events = JSON.parse(localStorage.getItem("timelineEvents")) || [];
+        // Function to calculate countdown
+        function calculateCountdown(dueDate) {
+          const now = new Date();
+          const due = new Date(dueDate);
+          const diff = due - now;
 
-      const sortEvents = () => {
-        events.sort((a, b) => new Date(a.date) - new Date(b.date));
-      };
+          if (diff <= 0) {
+            return {
+              days: 0,
+              hours: 0,
+              minutes: 0,
+              seconds: 0,
+              isOverdue: true,
+            };
+          }
 
-      const renderTimeline = () => {
-        sortEvents();
-        timelineContainer.innerHTML = events
-          .map(
-            (event) => `
-          <div class="timeline-event">
-            <img class="event-image" src="${event.image}" alt="${event.title}" />
-            <div class="event-title">${event.title}</div>
-            <div class="event-date">${event.date}</div>
-            <div class="event-location">${event.location}</div>
-            <div class="timeline-line"></div>
-          </div>
-        `
-          )
-          .join("");
-      };
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      const toBase64 = (file) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = (error) => reject(error);
+          return {
+            days,
+            hours,
+            minutes,
+            seconds,
+            isOverdue: false,
+          };
+        }
+
+        // Function to get status based on countdown
+        function getStatus(countdown) {
+          if (countdown.isOverdue) return "overdue";
+          if (countdown.days === 0 && countdown.hours < 6) return "very-urgent";
+          if (countdown.days === 0) return "urgent";
+          if (countdown.days <= 3) return "upcoming";
+          return "upcoming";
+        }
+
+        // Function to format countdown display
+        function formatCountdown(countdown) {
+          if (countdown.isOverdue) {
+            return "Overdue";
+          }
+
+          const parts = [];
+          if (countdown.days > 0) parts.push(`${countdown.days}d`);
+          if (countdown.hours > 0) parts.push(`${countdown.hours}h`);
+          if (countdown.days === 0 && countdown.minutes > 0)
+            parts.push(`${countdown.minutes}m`);
+
+          return parts.join(" ") || "Now";
+        }
+
+        // Function to update the exam countdown widget
+        function updateExamCountdown() {
+          const assignments = loadAssignments();
+          const exams = assignments.filter((a) => a.type === "exam");
+          const countdownList = document.getElementById("examCountdownList");
+
+          if (exams.length === 0) {
+            countdownList.innerHTML = `
+                        <div class="no-exams">
+                            <i class="fas fa-graduation-cap"></i>
+                            <p>No upcoming exams found.<br>Add exams in the Assignment & Exam Tracker to see countdowns here.</p>
+                        </div>
+                    `;
+            return;
+          }
+
+          // Sort exams by due date
+          const sortedExams = exams.sort(
+            (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+          );
+
+          // Create summary
+          const totalExams = exams.length;
+          const upcomingExams = exams.filter((e) => {
+            const countdown = calculateCountdown(e.dueDate);
+            return !countdown.isOverdue;
+          }).length;
+
+          const summaryHTML = `
+                    <div class="exam-summary">
+                        <div class="summary-card">
+                            <div class="summary-number">${totalExams}</div>
+                            <div class="summary-label">Total</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-number">${upcomingExams}</div>
+                            <div class="summary-label">Upcoming</div>
+                        </div>
+                    </div>
+                `;
+
+          countdownList.innerHTML =
+            summaryHTML + '<div class="exam-countdown-list">';
+
+          sortedExams.forEach((exam) => {
+            const countdown = calculateCountdown(exam.dueDate);
+            const status = getStatus(countdown);
+            const formattedDate = new Date(exam.dueDate).toLocaleDateString(
+              "en-US",
+              {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              }
+            );
+
+            const examItem = document.createElement("div");
+            examItem.className = `exam-countdown-item ${status}`;
+
+            examItem.innerHTML = `
+                        <div class="exam-name">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>${exam.name}</span>
+                        </div>
+                        <div class="exam-date">
+                            <i class="fas fa-calendar"></i>
+                            <span>${formattedDate}</span>
+                        </div>
+                        <div class="countdown-container">
+                            <div class="countdown-text ${status}">${formatCountdown(
+              countdown
+            )}</div>
+                            <div class="countdown-status ${status}">
+                                ${countdown.isOverdue ? "Overdue" : "Remaining"}
+                            </div>
+                        </div>
+                    `;
+
+            countdownList
+              .querySelector(".exam-countdown-list")
+              .appendChild(examItem);
+          });
+        }
+
+        // Update countdown every second
+        function startCountdownTimer() {
+          updateExamCountdown();
+          setInterval(updateExamCountdown, 1000);
+        }
+
+        // Listen for storage changes
+        window.addEventListener("storage", function (e) {
+          if (e.key === "assignments") {
+            updateExamCountdown();
+          }
         });
 
-      eventForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const title = document.getElementById("title").value;
-        const date = document.getElementById("date").value;
-        const location = document.getElementById("location").value;
-        const imageFile = document.getElementById("image").files[0];
-        const image = imageFile ? await toBase64(imageFile) : "";
-
-        events.push({ title, date, location, image });
-        localStorage.setItem("timelineEvents", JSON.stringify(events));
-
-        eventForm.reset();
-        modal.classList.add("hidden");
-        renderTimeline();
+        // Start the countdown timer
+        startCountdownTimer();
       });
-
-      removeEventBtn.addEventListener("click", () => {
-        events.pop();
-        localStorage.setItem("timelineEvents", JSON.stringify(events));
-        renderTimeline();
-      });
-
-      addEventBtn.addEventListener("click", () => {
-        modal.classList.remove("hidden");
-      });
-
-      closeModal.addEventListener("click", () => {
-        modal.classList.add("hidden");
-      });
-
-      renderTimeline();
     </script>
   </body>
 </html>
+
+
