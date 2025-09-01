@@ -3,456 +3,1025 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exam Countdown</title>
+    <title>Wedding Day Timeline</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
     <style>
+      :root {
+        --primary-color: #d4a5a5;
+        --secondary-color: #f2e6e6;
+        --accent-color: #f9f2f2;
+        --text-color: #6d4c41;
+        --light-text: #8d6e63;
+        --border-color: rgba(212, 165, 165, 0.3);
+      }
+      /* Reset box model globally */
       * {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
       }
-
       body {
-        background: #fdf6f0; /* Cream/Ivory background */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 20px;
         font-family: "Inter", sans-serif;
-        color: #4a4a4a; /* Slate Gray for text */
-      }
-
-      .widget-container {
-        width: 100%;
-        max-width: 800px; /* Increased width for horizontal layout */
-        height: 140px; /* Fixed height for horizontal bar */
-        background: #fdf6f0; /* Cream/Ivory main background */
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        overflow: hidden;
-        border: 1px solid rgba(74, 74, 74, 0.1);
-        display: flex;
-        flex-direction: row;
-      }
-
-      .widget-header {
-        background: #4a4a4a; /* Slate Gray for header */
-        color: white;
+        background-color: #fafafa;
+        margin: 0;
         padding: 20px;
-        width: 160px; /* Fixed width for header section */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
       }
-
-      .widget-header h1 {
-        font-family: "Playfair Display", serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        letter-spacing: 0.2px;
-        margin-bottom: 8px;
-      }
-
-      .widget-header .subtitle {
-        font-size: 0.8rem;
-        opacity: 0.9;
-        font-weight: 300;
-      }
-
-      .widget-content {
-        flex: 1;
-        padding: 16px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow-x: auto; /* Horizontal scrolling */
-        overflow-y: hidden;
-      }
-
-      .no-exams {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        color: #4a4a4a;
-        opacity: 0.7;
-        text-align: center;
-        min-width: 300px;
-      }
-
-      .no-exams i {
-        font-size: 2rem;
-        color: #a3b18a;
-        margin-bottom: 12px;
-      }
-
-      .no-exams p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-
-      .exam-countdown-list {
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
-        align-items: stretch;
-      }
-
-      .exam-countdown-item {
+      /* Container styling */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
         background: white;
-        border-radius: 12px;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 4px 12px rgba(212, 165, 165, 0.15);
+      }
+      /* Header styling */
+      h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 3rem;
+        color: var(--text-color);
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      h1::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary-color),
+          transparent
+        );
+        border-radius: 2px;
+      }
+      /* Add Event Form Styles */
+      .add-event-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 30px;
+        padding: 25px;
+        background: var(--accent-color);
+        border-radius: 15px;
+      }
+      .form-group {
+        flex: 1;
+        min-width: 200px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--light-text);
+      }
+      input {
+        width: 100%;
         padding: 12px;
-        border: 1px solid rgba(74, 74, 74, 0.1);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+      /* Icon Selector Styles */
+      .icon-selector {
+        position: relative;
+        width: 50px;
+        height: 50px;
+      }
+      .icon-display {
+        width: 50px;
+        height: 50px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        background: white;
+      }
+      .icon-options {
+        position: absolute;
+        top: 55px;
+        left: 0;
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(212, 165, 165, 0.15);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 5px;
+        padding: 10px;
+        z-index: 100;
+        display: none;
+      }
+      .icon-options.show {
+        display: grid;
+      }
+      .icon-option {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .icon-option:hover {
+        background-color: var(--accent-color);
+      }
+      .icon-option.selected {
+        background-color: var(--primary-color);
+        color: white;
+      }
+      /* Button styles */
+      button {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        align-self: flex-end;
+      }
+      button:hover {
+        background-color: #c89292;
+        transform: translateY(-2px);
+      }
+      /* Timeline styles */
+      .timeline-wrapper {
+        position: relative;
+        margin: 80px 0;
+        padding: 60px 0;
+        background: linear-gradient(to bottom, #fefefe, #f8f4f4);
+        border-radius: 15px;
+      }
+      .timeline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        padding: 0 20px;
+      }
+      .timeline-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--text-color);
+      }
+      .clear-all-btn {
+        background: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 20px;
+      }
+      .clear-all-btn:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+      /* Vertical Timeline */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        min-height: 100px;
+      }
+
+      /* The vertical line - only show when there are events */
+      .timeline.has-events::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(212, 165, 165, 0.1),
+          rgba(212, 165, 165, 0.5) 20%,
+          rgba(212, 165, 165, 0.5) 80%,
+          rgba(212, 165, 165, 0.1)
+        );
+        border-radius: 2px;
+      }
+
+      /* Timeline items */
+      .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+        width: 50%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Left side items */
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+        padding-right: 25px;
+      }
+
+      /* Right side items */
+      .timeline-item:nth-child(even) {
+        left: 50%;
+        text-align: left;
+        padding-left: 25px;
+      }
+
+      /* Timeline dot */
+      .timeline-dot {
+        position: absolute;
+        top: 25px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(212, 165, 165, 0.2);
+        z-index: 1;
+      }
+
+      /* Position dots */
+      .timeline-item:nth-child(odd) .timeline-dot {
+        right: -10px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -10px;
+      }
+
+      /* Timeline content - Circular and closer to line */
+      .timeline-content {
+        background: white;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 5px 15px rgba(212, 165, 165, 0.1);
+        border: 2px solid var(--border-color);
+        cursor: pointer;
         transition: all 0.3s ease;
-        min-width: 180px;
-        max-width: 220px;
-        flex-shrink: 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
       }
 
-      .exam-countdown-item:hover {
-        border-color: #a3b18a;
-        box-shadow: 0 4px 12px rgba(163, 177, 138, 0.15);
+      .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(212, 165, 165, 0.2);
+        border-color: var(--primary-color);
       }
 
-      .exam-countdown-item.urgent {
-        border-left: 4px solid #a3b18a;
+      /* Timeline icon */
+      .timeline-icon {
+        width: 35px;
+        height: 35px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        margin-bottom: 5px;
+        box-shadow: 0 3px 10px rgba(212, 165, 165, 0.3);
       }
 
-      .exam-countdown-item.very-urgent {
-        border-left: 4px solid #4a4a4a;
-        background: linear-gradient(135deg, #fdf6f0 0%, #f0e6d2 100%);
-      }
-
-      .exam-countdown-item.overdue {
-        border-left: 4px solid #e8c9c0;
-        background: linear-gradient(135deg, #fdf6f0 0%, #fce8e6 100%);
-      }
-
-      .exam-name {
+      /* Timeline title */
+      .timeline-title-text {
+        font-family: "Playfair Display", serif;
+        font-size: 12px;
         font-weight: 600;
-        color: #4a4a4a;
-        font-size: 0.9rem;
-        margin-bottom: 6px;
+        color: var(--text-color);
+        margin-bottom: 3px;
+        max-width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Timeline time */
+      .timeline-time {
+        background: var(--secondary-color);
+        color: var(--text-color);
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 9px;
+        display: inline-block;
+      }
+
+      /* Timeline description - hidden in circle, shown in modal */
+      .timeline-description {
+        display: none;
+      }
+
+      /* Empty timeline message */
+      .empty-timeline {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--light-text);
+      }
+      .empty-timeline i {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+      .empty-timeline p {
+        font-size: 18px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      /* Preset Events styling */
+      .preset-events {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        padding: 15px;
+        background: var(--accent-color);
+        border-radius: 12px;
+      }
+      .preset-event {
+        padding: 8px 15px;
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
         display: flex;
         align-items: center;
         gap: 6px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
-
-      .exam-name i {
-        color: #a3b18a;
-        font-size: 0.8rem;
-        flex-shrink: 0;
+      .preset-event:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
       }
-
-      .exam-date {
-        font-size: 0.75rem;
-        color: #4a4a4a;
-        opacity: 0.8;
-        margin-bottom: 8px;
+      /* Notification style */
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid var(--primary-color);
         display: flex;
         align-items: center;
-        gap: 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        gap: 10px;
+        opacity: 0;
+        transform: translateX(400px);
+        transition: all 0.3s;
+        z-index: 999;
       }
-
-      .exam-date i {
-        color: #a3b18a;
-        font-size: 0.7rem;
-        flex-shrink: 0;
+      .notification.show {
+        opacity: 1;
+        transform: translateX(0);
       }
-
-      .countdown-container {
+      .notification i {
+        color: var(--primary-color);
+      }
+      /* Modal styles - enhanced */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(3px);
+      }
+      .modal-content {
+        background-color: white;
+        border-radius: 15px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        position: relative;
+        animation: modalFadeIn 0.3s ease;
+        border: 1px solid var(--border-color);
+      }
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--light-text);
+        transition: color 0.2s;
+        width: 30px;
+        height: 30px;
         display: flex;
-        flex-direction: column;
-        gap: 4px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
       }
-
-      .countdown-text {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #4a4a4a;
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .countdown-text.urgent {
-        color: #a3b18a;
-      }
-
-      .countdown-text.very-urgent {
-        color: #4a4a4a;
-      }
-
-      .countdown-text.overdue {
-        color: #4a4a4a;
-      }
-
-      .countdown-status {
-        align-self: flex-start;
-        font-size: 0.75rem;
-        font-weight: 500;
-        padding: 2px 8px;
-        border-radius: 10px;
-        background: #e8f4f8;
-        color: #4a4a4a;
-        width: fit-content;
-      }
-
-      .countdown-status.upcoming {
-        background: #f0e6d2;
-        color: #4a4a4a;
-      }
-
-      .countdown-status.urgent {
-        background: #a3b18a;
+      .modal-close:hover {
         color: white;
+        background: var(--primary-color);
       }
-
-      .countdown-status.very-urgent {
-        background: #4a4a4a;
-        color: white;
-      }
-
-      .countdown-status.overdue {
-        background: #e8c9c0;
-        color: #4a4a4a;
-      }
-
-      .exam-summary {
+      .modal-header {
         display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--border-color);
       }
-
-      .summary-card {
-        background: white;
-        padding: 8px 12px;
-        border-radius: 8px;
-        text-align: center;
-        border: 1px solid rgba(74, 74, 74, 0.1);
-        flex: 1;
+      .modal-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-right: 15px;
+        box-shadow: 0 4px 8px rgba(212, 165, 165, 0.3);
       }
-
-      .summary-number {
-        font-size: 1.2rem;
+      .modal-title {
+        font-family: "Playfair Display", serif;
+        font-size: 24px;
         font-weight: 600;
-        color: #4a4a4a;
+        color: var(--text-color);
       }
-
-      .summary-label {
-        font-size: 0.7rem;
-        color: #4a4a4a;
-        opacity: 0.8;
-        margin-top: 1px;
+      .modal-time {
+        background: var(--primary-color);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        display: inline-block;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 4px rgba(212, 165, 165, 0.2);
+      }
+      .modal-description {
+        color: var(--light-text);
+        font-size: 16px;
+        margin-bottom: 25px;
+        line-height: 1.5;
+        min-height: 50px;
+      }
+      .modal-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+      }
+      .modal-actions button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      .edit-btn {
+        background: #aed581;
+      }
+      .edit-btn:hover {
+        background: #9ccc65;
+      }
+      .delete-btn {
+        background: #ef9a9a;
+      }
+      .delete-btn:hover {
+        background: #e57373;
       }
     </style>
   </head>
   <body>
-    <div class="widget-container">
-      <div class="widget-header">
-        <h1>Exam Countdown</h1>
-        <div class="subtitle">Live Timers</div>
-      </div>
-      <div class="widget-content">
-        <div id="examCountdownList">
-          <div class="no-exams">
-            <i class="fas fa-graduation-cap"></i>
-            <p>
-              No upcoming exams found.<br />Add exams in the Assignment & Exam
-              Tracker to see countdowns here.
-            </p>
+    <div class="container">
+      <h1>Wedding Day Timeline</h1>
+      <!-- Add Event Form -->
+      <div class="add-event-form">
+        <div class="form-group">
+          <label for="event-name">Event Name</label>
+          <input type="text" id="event-name" placeholder="e.g. Ceremony" />
+        </div>
+        <div class="form-group">
+          <label for="event-time">Time</label>
+          <input type="time" id="event-time" />
+        </div>
+        <div class="form-group" style="min-width: 250px">
+          <label>Icon</label>
+          <div class="icon-selector" style="position: relative">
+            <div class="icon-display" id="selected-icon">
+              <i class="fas fa-ring"></i>
+            </div>
+            <div class="icon-options" id="icon-options">
+              <!-- Icon options -->
+              <div class="icon-option" data-icon="fas fa-ring">
+                <i class="fas fa-ring"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-gem">
+                <i class="fas fa-gem"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-church">
+                <i class="fas fa-church"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-camera">
+                <i class="fas fa-camera"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-music">
+                <i class="fas fa-music"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-utensils">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-wine-glass">
+                <i class="fas fa-wine-glass"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-birthday-cake">
+                <i class="fas fa-birthday-cake"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-heart">
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-spa">
+                <i class="fas fa-spa"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-car">
+                <i class="fas fa-car"></i>
+              </div>
+              <div class="icon-option" data-icon="fas fa-plane">
+                <i class="fas fa-plane"></i>
+              </div>
+            </div>
           </div>
+        </div>
+        <div class="form-group" style="min-width: 250px">
+          <label for="event-description">Description</label>
+          <input
+            type="text"
+            id="event-description"
+            placeholder="Brief description"
+          />
+        </div>
+        <button id="add-event-btn">
+          <i class="fas fa-plus"></i> Add Event
+        </button>
+      </div>
+      <!-- Preset Events -->
+      <div class="preset-events">
+        <div
+          class="preset-event"
+          data-name="Hair & Makeup"
+          data-icon="fas fa-spa"
+        >
+          <i class="fas fa-spa"></i> Hair & Makeup
+        </div>
+        <div
+          class="preset-event"
+          data-name="Getting Dressed"
+          data-icon="fas fa-tshirt"
+        >
+          <i class="fas fa-tshirt"></i> Getting Dressed
+        </div>
+        <div class="preset-event" data-name="First Look" data-icon="fas fa-eye">
+          <i class="fas fa-eye"></i> First Look
+        </div>
+        <div
+          class="preset-event"
+          data-name="Ceremony"
+          data-icon="fas fa-church"
+        >
+          <i class="fas fa-church"></i> Ceremony
+        </div>
+        <div
+          class="preset-event"
+          data-name="Cocktail Hour"
+          data-icon="fas fa-wine-glass"
+        >
+          <i class="fas fa-wine-glass"></i> Cocktail Hour
+        </div>
+        <div
+          class="preset-event"
+          data-name="Reception"
+          data-icon="fas fa-glass-cheers"
+        >
+          <i class="fas fa-glass-cheers"></i> Reception
+        </div>
+        <div
+          class="preset-event"
+          data-name="First Dance"
+          data-icon="fas fa-music"
+        >
+          <i class="fas fa-music"></i> First Dance
+        </div>
+        <div
+          class="preset-event"
+          data-name="Dinner"
+          data-icon="fas fa-utensils"
+        >
+          <i class="fas fa-utensils"></i> Dinner
+        </div>
+        <div
+          class="preset-event"
+          data-name="Cake Cutting"
+          data-icon="fas fa-birthday-cake"
+        >
+          <i class="fas fa-birthday-cake"></i> Cake Cutting
+        </div>
+        <div
+          class="preset-event"
+          data-name="Bouquet Toss"
+          data-icon="fas fa-seedling"
+        >
+          <i class="fas fa-seedling"></i> Bouquet Toss
+        </div>
+      </div>
+      <!-- Timeline -->
+      <div class="timeline-wrapper">
+        <div class="timeline-header">
+          <h2 class="timeline-title">Wedding Day Events</h2>
+          <button class="clear-all-btn" id="clear-all-btn">
+            <i class="fas fa-trash-alt"></i> Clear All
+          </button>
+        </div>
+        <div class="timeline" id="timeline">
+          <div class="empty-timeline" id="empty-timeline">
+            <i class="fas fa-calendar-day"></i>
+            <p>No events added yet. Add your first wedding day event!</p>
+          </div>
+        </div>
+      </div>
+      <!-- Notification -->
+      <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text"></span>
+      </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div class="modal" id="event-modal">
+      <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="modal-header">
+          <div class="modal-icon" id="modal-icon">
+            <i class="fas fa-ring"></i>
+          </div>
+          <h2 class="modal-title" id="modal-title">Event Title</h2>
+        </div>
+        <div class="modal-time" id="modal-time">Event Time</div>
+        <div class="modal-description" id="modal-description">
+          Event description goes here.
+        </div>
+        <div class="modal-actions">
+          <button class="edit-btn" id="modal-edit-btn">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="delete-btn" id="modal-delete-btn">
+            <i class="fas fa-trash"></i> Delete
+          </button>
         </div>
       </div>
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Function to load assignments from localStorage
-        function loadAssignments() {
-          return JSON.parse(localStorage.getItem("assignments")) || [];
-        }
+      document.addEventListener("DOMContentLoaded", () => {
+        const timeline = document.getElementById("timeline");
+        const eventNameInput = document.getElementById("event-name");
+        const eventTimeInput = document.getElementById("event-time");
+        const eventDescriptionInput =
+          document.getElementById("event-description");
+        const addEventBtn = document.getElementById("add-event-btn");
+        const selectedIconDisplay = document.getElementById("selected-icon");
+        const iconOptions = document.getElementById("icon-options");
+        const emptyTimeline = document.getElementById("empty-timeline");
+        const presetEvents = document.querySelectorAll(".preset-event");
+        const notification = document.getElementById("notification");
+        const notificationText = document.getElementById("notification-text");
+        const clearAllBtn = document.getElementById("clear-all-btn");
 
-        // Function to calculate countdown
-        function calculateCountdown(dueDate) {
-          const now = new Date();
-          const due = new Date(dueDate);
-          const diff = due - now;
+        // Modal elements
+        const modal = document.getElementById("event-modal");
+        const modalClose = document.getElementById("modal-close");
+        const modalIcon = document.getElementById("modal-icon");
+        const modalTitle = document.getElementById("modal-title");
+        const modalTime = document.getElementById("modal-time");
+        const modalDescription = document.getElementById("modal-description");
+        const modalEditBtn = document.getElementById("modal-edit-btn");
+        const modalDeleteBtn = document.getElementById("modal-delete-btn");
 
-          if (diff <= 0) {
-            return {
-              days: 0,
-              hours: 0,
-              minutes: 0,
-              seconds: 0,
-              isOverdue: true,
-            };
+        let selectedIcon = "fas fa-ring";
+        let events = [];
+        let editingEventId = null;
+        let currentEventId = null;
+
+        // Load from local storage
+        function loadEvents() {
+          const saved = localStorage.getItem("weddingTimelineEvents");
+          if (saved) {
+            events = JSON.parse(saved);
+            renderEvents();
           }
-
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-          return {
-            days,
-            hours,
-            minutes,
-            seconds,
-            isOverdue: false,
-          };
         }
 
-        // Function to get status based on countdown
-        function getStatus(countdown) {
-          if (countdown.isOverdue) return "overdue";
-          if (countdown.days === 0 && countdown.hours < 6) return "very-urgent";
-          if (countdown.days === 0) return "urgent";
-          if (countdown.days <= 3) return "upcoming";
-          return "upcoming";
+        function saveEvents() {
+          localStorage.setItem("weddingTimelineEvents", JSON.stringify(events));
         }
 
-        // Function to format countdown display
-        function formatCountdown(countdown) {
-          if (countdown.isOverdue) {
-            return "Overdue";
-          }
-
-          const parts = [];
-          if (countdown.days > 0) parts.push(`${countdown.days}d`);
-          if (countdown.hours > 0) parts.push(`${countdown.hours}h`);
-          if (countdown.days === 0 && countdown.minutes > 0)
-            parts.push(`${countdown.minutes}m`);
-
-          return parts.join(" ") || "Now";
+        function showNotification(msg) {
+          notificationText.textContent = msg;
+          notification.classList.add("show");
+          setTimeout(() => {
+            notification.classList.remove("show");
+          }, 3000);
         }
 
-        // Function to update the exam countdown widget
-        function updateExamCountdown() {
-          const assignments = loadAssignments();
-          const exams = assignments.filter((a) => a.type === "exam");
-          const countdownList = document.getElementById("examCountdownList");
-
-          if (exams.length === 0) {
-            countdownList.innerHTML = `
-                        <div class="no-exams">
-                            <i class="fas fa-graduation-cap"></i>
-                            <p>No upcoming exams found.<br>Add exams in the Assignment & Exam Tracker to see countdowns here.</p>
-                        </div>
-                    `;
-            return;
-          }
-
-          // Sort exams by due date
-          const sortedExams = exams.sort(
-            (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
-          );
-
-          // Create summary
-          const totalExams = exams.length;
-          const upcomingExams = exams.filter((e) => {
-            const countdown = calculateCountdown(e.dueDate);
-            return !countdown.isOverdue;
-          }).length;
-
-          const summaryHTML = `
-                    <div class="exam-summary">
-                        <div class="summary-card">
-                            <div class="summary-number">${totalExams}</div>
-                            <div class="summary-label">Total</div>
-                        </div>
-                        <div class="summary-card">
-                            <div class="summary-number">${upcomingExams}</div>
-                            <div class="summary-label">Upcoming</div>
-                        </div>
-                    </div>
-                `;
-
-          countdownList.innerHTML =
-            summaryHTML + '<div class="exam-countdown-list">';
-
-          sortedExams.forEach((exam) => {
-            const countdown = calculateCountdown(exam.dueDate);
-            const status = getStatus(countdown);
-            const formattedDate = new Date(exam.dueDate).toLocaleDateString(
-              "en-US",
-              {
-                month: "short",
-                day: "numeric",
-                year: "numeric",
-              }
-            );
-
-            const examItem = document.createElement("div");
-            examItem.className = `exam-countdown-item ${status}`;
-
-            examItem.innerHTML = `
-                        <div class="exam-name">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span>${exam.name}</span>
-                        </div>
-                        <div class="exam-date">
-                            <i class="fas fa-calendar"></i>
-                            <span>${formattedDate}</span>
-                        </div>
-                        <div class="countdown-container">
-                            <div class="countdown-text ${status}">${formatCountdown(
-              countdown
-            )}</div>
-                            <div class="countdown-status ${status}">
-                                ${countdown.isOverdue ? "Overdue" : "Remaining"}
-                            </div>
-                        </div>
-                    `;
-
-            countdownList
-              .querySelector(".exam-countdown-list")
-              .appendChild(examItem);
+        // Icon selector
+        document
+          .getElementById("selected-icon")
+          .addEventListener("click", () => {
+            iconOptions.classList.toggle("show");
           });
-        }
 
-        // Update countdown every second
-        function startCountdownTimer() {
-          updateExamCountdown();
-          setInterval(updateExamCountdown, 1000);
-        }
-
-        // Listen for storage changes
-        window.addEventListener("storage", function (e) {
-          if (e.key === "assignments") {
-            updateExamCountdown();
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".icon-selector")) {
+            iconOptions.classList.remove("show");
           }
         });
 
-        // Start the countdown timer
-        startCountdownTimer();
+        document.querySelectorAll(".icon-option").forEach((opt) => {
+          opt.addEventListener("click", () => {
+            document
+              .querySelectorAll(".icon-option")
+              .forEach((o) => o.classList.remove("selected"));
+            opt.classList.add("selected");
+            selectedIcon = opt.dataset.icon;
+            selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
+            iconOptions.classList.remove("show");
+          });
+        });
+
+        // Preset events select
+        presetEvents.forEach((preset) => {
+          preset.addEventListener("click", () => {
+            eventNameInput.value = preset.dataset.name;
+            selectedIcon = preset.dataset.icon;
+            selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
+            document
+              .querySelectorAll(".icon-option")
+              .forEach((opt) => opt.classList.remove("selected"));
+            const match = document.querySelector(
+              `.icon-option[data-icon="${selectedIcon}"]`
+            );
+            if (match) match.classList.add("selected");
+          });
+        });
+
+        // Add or update event
+        document
+          .getElementById("add-event-btn")
+          .addEventListener("click", () => {
+            const name = eventNameInput.value.trim();
+            const time = eventTimeInput.value;
+            const description = eventDescriptionInput.value.trim();
+            if (!name) {
+              showNotification("Please enter an event name");
+              return;
+            }
+            if (editingEventId) {
+              // Update
+              const idx = events.findIndex((e) => e.id === editingEventId);
+              if (idx !== -1) {
+                events[idx] = {
+                  id: editingEventId,
+                  name,
+                  time,
+                  description,
+                  icon: selectedIcon,
+                };
+                saveEvents();
+                renderEvents();
+                showNotification("Event updated successfully!");
+              }
+              editingEventId = null;
+              addEventBtn.innerHTML = '<i class="fas fa-plus"></i> Add Event';
+            } else {
+              // Add new
+              const newEvent = {
+                id: Date.now(),
+                name,
+                time,
+                description,
+                icon: selectedIcon,
+              };
+              events.push(newEvent);
+              saveEvents();
+              renderEvents();
+              showNotification("Event added successfully!");
+            }
+            // Reset form
+            eventNameInput.value = "";
+            eventTimeInput.value = "";
+            eventDescriptionInput.value = "";
+            selectedIcon = "fas fa-ring";
+            selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
+            document
+              .querySelectorAll(".icon-option")
+              .forEach((opt) => opt.classList.remove("selected"));
+            const defaultOpt = document.querySelector(
+              `.icon-option[data-icon="${selectedIcon}"]`
+            );
+            if (defaultOpt) defaultOpt.classList.add("selected");
+          });
+
+        // Clear all events
+        clearAllBtn.addEventListener("click", () => {
+          if (events.length === 0) {
+            showNotification("No events to clear");
+            return;
+          }
+
+          if (confirm("Are you sure you want to clear all events?")) {
+            events = [];
+            saveEvents();
+            renderEvents();
+            showNotification("All events cleared successfully!");
+          }
+        });
+
+        // Render events
+        function renderEvents() {
+          // Clear previous
+          timeline.innerHTML = "";
+
+          if (events.length === 0) {
+            timeline.innerHTML = `
+              <div class="empty-timeline">
+                  <i class="fas fa-calendar-day"></i>
+                  <p>No events added yet. Add your first wedding day event!</p>
+              </div>
+            `;
+            // Remove has-events class to hide the timeline line
+            timeline.classList.remove("has-events");
+            return;
+          }
+
+          // Add has-events class to show the timeline line
+          timeline.classList.add("has-events");
+
+          // Sort by time
+          const sorted = [...events].sort((a, b) => {
+            if (!a.time) return 1;
+            if (!b.time) return -1;
+            return a.time.localeCompare(b.time);
+          });
+
+          // Add each event
+          sorted.forEach((event, index) => {
+            const div = document.createElement("div");
+            div.className = "timeline-item";
+            div.style.animationDelay = `${index * 0.1}s`;
+            div.innerHTML = `
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-icon"><i class="${event.icon}"></i></div>
+                <div class="timeline-title-text">${event.name}</div>
+                <div class="timeline-time">${event.time || "No time"}</div>
+                <div class="timeline-description">${
+                  event.description || "No description"
+                }</div>
+              </div>
+            `;
+            timeline.appendChild(div);
+
+            // Add click event to show modal
+            div.addEventListener("click", () => {
+              showEventModal(event);
+            });
+          });
+        }
+
+        // Show event modal
+        function showEventModal(event) {
+          currentEventId = event.id;
+          modalIcon.innerHTML = `<i class="${event.icon}"></i>`;
+          modalTitle.textContent = event.name;
+          modalTime.textContent = event.time || "No time set";
+          modalDescription.textContent = event.description || "No description";
+
+          modal.style.display = "flex";
+        }
+
+        // Close modal
+        modalClose.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+
+        // Edit event from modal
+        modalEditBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+          editEvent(currentEventId);
+        });
+
+        // Delete event from modal
+        modalDeleteBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+          deleteEvent(currentEventId);
+        });
+
+        function editEvent(id) {
+          const ev = events.find((e) => e.id === id);
+          if (!ev) return;
+          eventNameInput.value = ev.name;
+          eventTimeInput.value = ev.time;
+          eventDescriptionInput.value = ev.description;
+          selectedIcon = ev.icon;
+          selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
+          document
+            .querySelectorAll(".icon-option")
+            .forEach((opt) => opt.classList.remove("selected"));
+          const match = document.querySelector(
+            `.icon-option[data-icon="${selectedIcon}"]`
+          );
+          if (match) match.classList.add("selected");
+          editingEventId = id;
+          addEventBtn.innerHTML = '<i class="fas fa-save"></i> Update Event';
+          // Scroll to form
+          document
+            .querySelector(".add-event-form")
+            .scrollIntoView({ behavior: "smooth" });
+        }
+
+        function deleteEvent(id) {
+          if (confirm("Are you sure you want to delete this event?")) {
+            events = events.filter((e) => e.id !== id);
+            saveEvents();
+            renderEvents();
+            showNotification("Event deleted successfully!");
+          }
+        }
+
+        // Initialize
+        loadEvents();
+        // Set default icon
+        document
+          .querySelector(`.icon-option[data-icon="${selectedIcon}"]`)
+          ?.classList.add("selected");
       });
     </script>
   </body>
 </html>
+
 
 
