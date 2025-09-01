@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedding Event Form</title>
+    <title>Wedding Day Timeline</title>
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
@@ -31,34 +31,34 @@
         font-family: "Inter", sans-serif;
         background-color: #fafafa;
         margin: 0;
-        padding: 20px;
+        padding: 10px; /* Reduced padding */
         color: var(--text-color);
       }
       /* Container styling */
       .container {
-        max-width: 1000px;
+        max-width: 800px;
         margin: 0 auto;
         background: white;
-        border-radius: 20px;
-        padding: 30px;
+        border-radius: 15px;
+        padding: 20px; /* Reduced padding */
         box-shadow: 0 4px 12px rgba(212, 165, 165, 0.15);
       }
       /* Header styling */
       h1 {
         font-family: "Dancing Script", cursive;
-        font-size: 2.5rem;
+        font-size: 2.2rem; /* Reduced font size */
         color: var(--text-color);
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px; /* Reduced margin */
         position: relative;
       }
       h1::after {
         content: "";
         position: absolute;
-        bottom: -10px;
+        bottom: -8px; /* Reduced distance */
         left: 50%;
         transform: translateX(-50%);
-        width: 100px;
+        width: 80px; /* Reduced width */
         height: 3px;
         background: linear-gradient(
           90deg,
@@ -68,64 +68,65 @@
         );
         border-radius: 2px;
       }
-      /* Add Event Form Styles */
+      /* Add Event Form Styles - More compact */
       .add-event-form {
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
-        margin-bottom: 30px;
-        padding: 25px;
+        gap: 10px; /* Reduced gap */
+        margin-bottom: 20px; /* Reduced margin */
+        padding: 15px; /* Reduced padding */
         background: var(--accent-color);
-        border-radius: 15px;
+        border-radius: 10px; /* Reduced border radius */
       }
       .form-group {
         flex: 1;
-        min-width: 200px;
+        min-width: 180px; /* Reduced min width */
       }
       label {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 5px; /* Reduced margin */
         font-weight: 500;
         color: var(--light-text);
+        font-size: 14px; /* Reduced font size */
       }
       input {
         width: 100%;
-        padding: 12px;
+        padding: 8px; /* Reduced padding */
         border: 1px solid var(--border-color);
-        border-radius: 8px;
-        font-size: 16px;
+        border-radius: 6px; /* Reduced border radius */
+        font-size: 14px; /* Reduced font size */
         transition: border-color 0.3s;
       }
-      /* Icon Selector Styles */
+      /* Icon Selector Styles - More compact */
       .icon-selector {
         position: relative;
-        width: 50px;
-        height: 50px;
+        width: 40px; /* Reduced size */
+        height: 40px; /* Reduced size */
       }
       .icon-display {
-        width: 50px;
-        height: 50px;
+        width: 40px; /* Reduced size */
+        height: 40px; /* Reduced size */
         border: 1px solid var(--border-color);
-        border-radius: 8px;
+        border-radius: 6px; /* Reduced border radius */
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
+        font-size: 18px; /* Reduced font size */
         cursor: pointer;
         background: white;
       }
       .icon-options {
         position: absolute;
-        top: 55px;
+        top: 45px; /* Adjusted position */
         left: 0;
         background: white;
         border: 1px solid var(--border-color);
-        border-radius: 8px;
+        border-radius: 6px; /* Reduced border radius */
         box-shadow: 0 4px 12px rgba(212, 165, 165, 0.15);
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 5px;
-        padding: 10px;
+        padding: 8px; /* Reduced padding */
         z-index: 100;
         display: none;
       }
@@ -133,14 +134,15 @@
         display: grid;
       }
       .icon-option {
-        width: 40px;
-        height: 40px;
+        width: 35px; /* Reduced size */
+        height: 35px; /* Reduced size */
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 6px;
+        border-radius: 4px; /* Reduced border radius */
         cursor: pointer;
         transition: background-color 0.2s;
+        font-size: 14px; /* Reduced font size */
       }
       .icon-option:hover {
         background-color: var(--accent-color);
@@ -149,64 +151,251 @@
         background-color: var(--primary-color);
         color: white;
       }
-      /* Button styles */
+      /* Button styles - More compact */
       button {
         background: var(--primary-color);
         color: white;
         border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-size: 16px;
+        padding: 8px 16px; /* Reduced padding */
+        border-radius: 6px; /* Reduced border radius */
+        font-size: 14px; /* Reduced font size */
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px; /* Reduced gap */
         align-self: flex-end;
       }
       button:hover {
         background-color: #c89292;
         transform: translateY(-2px);
       }
-      /* Preset Events styling */
+      /* Timeline styles - More compact */
+      .timeline-wrapper {
+        position: relative;
+        margin: 20px 0; /* Reduced margin */
+        padding: 20px 0; /* Reduced padding */
+        background: linear-gradient(to bottom, #fefefe, #f8f4f4);
+        border-radius: 10px; /* Reduced border radius */
+      }
+      .timeline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px; /* Reduced margin */
+        padding: 0 15px; /* Reduced padding */
+      }
+      .timeline-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem; /* Reduced font size */
+        color: var(--text-color);
+      }
+      .clear-all-btn {
+        background: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        padding: 6px 12px; /* Reduced padding */
+        font-size: 12px; /* Reduced font size */
+        border-radius: 15px; /* Reduced border radius */
+      }
+      .clear-all-btn:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+      /* Vertical Timeline - More compact */
+      .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        min-height: 80px; /* Reduced min height */
+      }
+      /* The vertical line - only show when there are events */
+      .timeline.has-events::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 3px; /* Reduced width */
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(212, 165, 165, 0.1),
+          rgba(212, 165, 165, 0.5) 20%,
+          rgba(212, 165, 165, 0.5) 80%,
+          rgba(212, 165, 165, 0.1)
+        );
+        border-radius: 2px;
+      }
+      /* Timeline items - More compact */
+      .timeline-item {
+        position: relative;
+        margin-bottom: 15px; /* Reduced margin */
+        width: 50%;
+        padding: 0 8px; /* Reduced padding */
+        box-sizing: border-box;
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(15px); /* Reduced distance */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* Left side items */
+      .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+        padding-right: 8px; /* Reduced padding */
+      }
+      /* Right side items */
+      .timeline-item:nth-child(even) {
+        left: 50%;
+        text-align: left;
+        padding-left: 8px; /* Reduced padding */
+      }
+      /* Timeline dot - More compact */
+      .timeline-dot {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px; /* Reduced size */
+        height: 16px; /* Reduced size */
+        border-radius: 50%;
+        background: white;
+        border: 2px solid var(--primary-color); /* Reduced border width */
+        box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.2); /* Reduced shadow */
+        z-index: 1;
+      }
+      /* Position dots */
+      .timeline-item:nth-child(odd) .timeline-dot {
+        right: -8px; /* Adjusted position */
+      }
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -8px; /* Adjusted position */
+      }
+      /* Timeline content - More compact */
+      .timeline-content {
+        background: white;
+        border-radius: 50%;
+        width: 80px; /* Reduced size */
+        height: 80px; /* Reduced size */
+        box-shadow: 0 3px 10px rgba(212, 165, 165, 0.1); /* Reduced shadow */
+        border: 2px solid var(--border-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+      .timeline-content:hover {
+        transform: translateY(-3px); /* Reduced movement */
+        box-shadow: 0 6px 15px rgba(212, 165, 165, 0.2);
+        border-color: var(--primary-color);
+      }
+      /* Timeline icon - More compact */
+      .timeline-icon {
+        width: 28px; /* Reduced size */
+        height: 28px; /* Reduced size */
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px; /* Reduced font size */
+        margin-bottom: 3px; /* Reduced margin */
+        box-shadow: 0 2px 6px rgba(212, 165, 165, 0.3); /* Reduced shadow */
+      }
+      /* Timeline title - More compact */
+      .timeline-title-text {
+        font-family: "Playfair Display", serif;
+        font-size: 10px; /* Reduced font size */
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 2px; /* Reduced margin */
+        max-width: 70%; /* Reduced max width */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* Timeline time - More compact */
+      .timeline-time {
+        background: var(--secondary-color);
+        color: var(--text-color);
+        padding: 1px 4px; /* Reduced padding */
+        border-radius: 8px; /* Reduced border radius */
+        font-size: 8px; /* Reduced font size */
+        display: inline-block;
+      }
+      /* Timeline description - hidden in circle, shown in modal */
+      .timeline-description {
+        display: none;
+      }
+      /* Empty timeline message - More compact */
+      .empty-timeline {
+        text-align: center;
+        padding: 30px 15px; /* Reduced padding */
+        color: var(--light-text);
+      }
+      .empty-timeline i {
+        font-size: 36px; /* Reduced font size */
+        margin-bottom: 15px; /* Reduced margin */
+        color: var(--primary-color);
+      }
+      .empty-timeline p {
+        font-size: 16px; /* Reduced font size */
+        max-width: 350px; /* Reduced max width */
+        margin: 0 auto;
+      }
+      /* Preset Events styling - More compact */
       .preset-events {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 20px;
-        padding: 15px;
+        gap: 8px; /* Reduced gap */
+        margin-top: 15px; /* Reduced margin */
+        padding: 12px; /* Reduced padding */
         background: var(--accent-color);
-        border-radius: 12px;
+        border-radius: 10px; /* Reduced border radius */
       }
       .preset-event {
-        padding: 8px 15px;
+        padding: 6px 12px; /* Reduced padding */
         background: white;
         border: 1px solid var(--border-color);
-        border-radius: 20px;
-        font-size: 14px;
+        border-radius: 15px; /* Reduced border radius */
+        font-size: 12px; /* Reduced font size */
         cursor: pointer;
         transition: all 0.2s;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px; /* Reduced gap */
       }
       .preset-event:hover {
         background: var(--secondary-color);
-        transform: translateY(-2px);
+        transform: translateY(-1px); /* Reduced movement */
       }
-      /* Notification style */
+      /* Notification style - More compact */
       .notification {
         position: fixed;
         top: 20px;
         right: 20px;
         background: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 12px 16px; /* Reduced padding */
+        border-radius: 8px; /* Reduced border radius */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         border-left: 4px solid var(--primary-color);
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px; /* Reduced gap */
         opacity: 0;
         transform: translateX(400px);
         transition: all 0.3s;
@@ -218,12 +407,134 @@
       }
       .notification i {
         color: var(--primary-color);
+        font-size: 16px; /* Reduced font size */
+      }
+      .notification span {
+        font-size: 14px; /* Reduced font size */
+      }
+      /* Modal styles - More compact */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(3px);
+      }
+      .modal-content {
+        background-color: white;
+        border-radius: 12px; /* Reduced border radius */
+        padding: 20px; /* Reduced padding */
+        width: 90%;
+        max-width: 450px; /* Reduced max width */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        position: relative;
+        animation: modalFadeIn 0.3s ease;
+        border: 1px solid var(--border-color);
+      }
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-15px); /* Reduced distance */
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .modal-close {
+        position: absolute;
+        top: 12px; /* Reduced position */
+        right: 12px; /* Reduced position */
+        font-size: 20px; /* Reduced font size */
+        cursor: pointer;
+        color: var(--light-text);
+        transition: color 0.2s;
+        width: 26px; /* Reduced size */
+        height: 26px; /* Reduced size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+      .modal-close:hover {
+        color: white;
+        background: var(--primary-color);
+      }
+      .modal-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px; /* Reduced margin */
+        padding-bottom: 12px; /* Reduced padding */
+        border-bottom: 2px solid var(--border-color);
+      }
+      .modal-icon {
+        width: 40px; /* Reduced size */
+        height: 40px; /* Reduced size */
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px; /* Reduced font size */
+        margin-right: 12px; /* Reduced margin */
+        box-shadow: 0 3px 6px rgba(212, 165, 165, 0.3); /* Reduced shadow */
+      }
+      .modal-title {
+        font-family: "Playfair Display", serif;
+        font-size: 20px; /* Reduced font size */
+        font-weight: 600;
+        color: var(--text-color);
+      }
+      .modal-time {
+        background: var(--primary-color);
+        color: white;
+        padding: 6px 12px; /* Reduced padding */
+        border-radius: 15px; /* Reduced border radius */
+        font-size: 12px; /* Reduced font size */
+        display: inline-block;
+        margin-bottom: 12px; /* Reduced margin */
+        box-shadow: 0 2px 4px rgba(212, 165, 165, 0.2);
+      }
+      .modal-description {
+        color: var(--light-text);
+        font-size: 14px; /* Reduced font size */
+        margin-bottom: 20px; /* Reduced margin */
+        line-height: 1.4; /* Reduced line height */
+        min-height: 40px; /* Reduced min height */
+      }
+      .modal-actions {
+        display: flex;
+        gap: 12px; /* Reduced gap */
+        justify-content: center;
+      }
+      .modal-actions button {
+        padding: 8px 16px; /* Reduced padding */
+        font-size: 12px; /* Reduced font size */
+      }
+      .edit-btn {
+        background: #aed581;
+      }
+      .edit-btn:hover {
+        background: #9ccc65;
+      }
+      .delete-btn {
+        background: #ef9a9a;
+      }
+      .delete-btn:hover {
+        background: #e57373;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Add Wedding Events</h1>
+      <h1>Wedding Day Timeline</h1>
       
       <!-- Add Event Form -->
       <div class="add-event-form">
@@ -235,7 +546,7 @@
           <label for="event-time">Time</label>
           <input type="time" id="event-time" />
         </div>
-        <div class="form-group" style="min-width: 250px">
+        <div class="form-group" style="min-width: 200px">
           <label>Icon</label>
           <div class="icon-selector" style="position: relative">
             <div class="icon-display" id="selected-icon">
@@ -282,7 +593,7 @@
             </div>
           </div>
         </div>
-        <div class="form-group" style="min-width: 250px">
+        <div class="form-group" style="min-width: 200px">
           <label for="event-description">Description</label>
           <input
             type="text"
@@ -365,6 +676,22 @@
         </div>
       </div>
       
+      <!-- Timeline -->
+      <div class="timeline-wrapper">
+        <div class="timeline-header">
+          <h2 class="timeline-title">Wedding Day Events</h2>
+          <button class="clear-all-btn" id="clear-all-btn">
+            <i class="fas fa-trash-alt"></i> Clear All
+          </button>
+        </div>
+        <div class="timeline" id="timeline">
+          <div class="empty-timeline" id="empty-timeline">
+            <i class="fas fa-calendar-day"></i>
+            <p>No events added yet. Add your first wedding day event!</p>
+          </div>
+        </div>
+      </div>
+      
       <!-- Notification -->
       <div class="notification" id="notification">
         <i class="fas fa-check-circle"></i>
@@ -372,56 +699,69 @@
       </div>
     </div>
     
+    <!-- Event Modal -->
+    <div class="modal" id="event-modal">
+      <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="modal-header">
+          <div class="modal-icon" id="modal-icon">
+            <i class="fas fa-ring"></i>
+          </div>
+          <h2 class="modal-title" id="modal-title">Event Title</h2>
+        </div>
+        <div class="modal-time" id="modal-time">Event Time</div>
+        <div class="modal-description" id="modal-description">
+          Event description goes here.
+        </div>
+        <div class="modal-actions">
+          <button class="edit-btn" id="modal-edit-btn">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="delete-btn" id="modal-delete-btn">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        const timeline = document.getElementById("timeline");
         const eventNameInput = document.getElementById("event-name");
         const eventTimeInput = document.getElementById("event-time");
         const eventDescriptionInput = document.getElementById("event-description");
         const addEventBtn = document.getElementById("add-event-btn");
         const selectedIconDisplay = document.getElementById("selected-icon");
         const iconOptions = document.getElementById("icon-options");
+        const emptyTimeline = document.getElementById("empty-timeline");
         const presetEvents = document.querySelectorAll(".preset-event");
         const notification = document.getElementById("notification");
         const notificationText = document.getElementById("notification-text");
-        
+        const clearAllBtn = document.getElementById("clear-all-btn");
+        // Modal elements
+        const modal = document.getElementById("event-modal");
+        const modalClose = document.getElementById("modal-close");
+        const modalIcon = document.getElementById("modal-icon");
+        const modalTitle = document.getElementById("modal-title");
+        const modalTime = document.getElementById("modal-time");
+        const modalDescription = document.getElementById("modal-description");
+        const modalEditBtn = document.getElementById("modal-edit-btn");
+        const modalDeleteBtn = document.getElementById("modal-delete-btn");
         let selectedIcon = "fas fa-ring";
         let events = [];
         let editingEventId = null;
-        
+        let currentEventId = null;
         // Load from local storage
         function loadEvents() {
           const saved = localStorage.getItem("weddingTimelineEvents");
           if (saved) {
             events = JSON.parse(saved);
-          }
-          
-          // Check if we're editing an event
-          const editingId = localStorage.getItem("editingEventId");
-          if (editingId) {
-            const eventToEdit = events.find(e => e.id === parseInt(editingId));
-            if (eventToEdit) {
-              editingEventId = parseInt(editingId);
-              eventNameInput.value = eventToEdit.name;
-              eventTimeInput.value = eventToEdit.time;
-              eventDescriptionInput.value = eventToEdit.description;
-              selectedIcon = eventToEdit.icon;
-              selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
-              document.querySelectorAll(".icon-option").forEach((opt) => opt.classList.remove("selected"));
-              const match = document.querySelector(`.icon-option[data-icon="${selectedIcon}"]`);
-              if (match) match.classList.add("selected");
-              addEventBtn.innerHTML = '<i class="fas fa-save"></i> Update Event';
-            }
-            // Clear the editing flag
-            localStorage.removeItem("editingEventId");
+            renderEvents();
           }
         }
-        
         function saveEvents() {
           localStorage.setItem("weddingTimelineEvents", JSON.stringify(events));
-          // Dispatch a custom event to notify the timeline widget
-          window.dispatchEvent(new CustomEvent('weddingEventsUpdated', { detail: events }));
         }
-        
         function showNotification(msg) {
           notificationText.textContent = msg;
           notification.classList.add("show");
@@ -429,100 +769,225 @@
             notification.classList.remove("show");
           }, 3000);
         }
-        
         // Icon selector
-        document.getElementById("selected-icon").addEventListener("click", () => {
-          iconOptions.classList.toggle("show");
-        });
-        
+        document
+          .getElementById("selected-icon")
+          .addEventListener("click", () => {
+            iconOptions.classList.toggle("show");
+          });
         document.addEventListener("click", (e) => {
           if (!e.target.closest(".icon-selector")) {
             iconOptions.classList.remove("show");
           }
         });
-        
         document.querySelectorAll(".icon-option").forEach((opt) => {
           opt.addEventListener("click", () => {
-            document.querySelectorAll(".icon-option").forEach((o) => o.classList.remove("selected"));
+            document
+              .querySelectorAll(".icon-option")
+              .forEach((o) => o.classList.remove("selected"));
             opt.classList.add("selected");
             selectedIcon = opt.dataset.icon;
             selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
             iconOptions.classList.remove("show");
           });
         });
-        
         // Preset events select
         presetEvents.forEach((preset) => {
           preset.addEventListener("click", () => {
             eventNameInput.value = preset.dataset.name;
             selectedIcon = preset.dataset.icon;
             selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
-            document.querySelectorAll(".icon-option").forEach((opt) => opt.classList.remove("selected"));
-            const match = document.querySelector(`.icon-option[data-icon="${selectedIcon}"]`);
+            document
+              .querySelectorAll(".icon-option")
+              .forEach((opt) => opt.classList.remove("selected"));
+            const match = document.querySelector(
+              `.icon-option[data-icon="${selectedIcon}"]`
+            );
             if (match) match.classList.add("selected");
           });
         });
-        
         // Add or update event
-        document.getElementById("add-event-btn").addEventListener("click", () => {
-          const name = eventNameInput.value.trim();
-          const time = eventTimeInput.value;
-          const description = eventDescriptionInput.value.trim();
-          
-          if (!name) {
-            showNotification("Please enter an event name");
-            return;
-          }
-          
-          if (editingEventId) {
-            // Update existing event
-            const idx = events.findIndex((e) => e.id === editingEventId);
-            if (idx !== -1) {
-              events[idx] = {
-                id: editingEventId,
+        document
+          .getElementById("add-event-btn")
+          .addEventListener("click", () => {
+            const name = eventNameInput.value.trim();
+            const time = eventTimeInput.value;
+            const description = eventDescriptionInput.value.trim();
+            if (!name) {
+              showNotification("Please enter an event name");
+              return;
+            }
+            if (editingEventId) {
+              // Update
+              const idx = events.findIndex((e) => e.id === editingEventId);
+              if (idx !== -1) {
+                events[idx] = {
+                  id: editingEventId,
+                  name,
+                  time,
+                  description,
+                  icon: selectedIcon,
+                };
+                saveEvents();
+                renderEvents();
+                showNotification("Event updated successfully!");
+              }
+              editingEventId = null;
+              addEventBtn.innerHTML = '<i class="fas fa-plus"></i> Add Event';
+            } else {
+              // Add new
+              const newEvent = {
+                id: Date.now(),
                 name,
                 time,
                 description,
                 icon: selectedIcon,
               };
+              events.push(newEvent);
               saveEvents();
-              showNotification("Event updated successfully!");
+              renderEvents();
+              showNotification("Event added successfully!");
             }
-            editingEventId = null;
-            addEventBtn.innerHTML = '<i class="fas fa-plus"></i> Add Event';
-          } else {
-            // Add new event
-            const newEvent = {
-              id: Date.now(),
-              name,
-              time,
-              description,
-              icon: selectedIcon,
-            };
-            events.push(newEvent);
-            saveEvents();
-            showNotification("Event added successfully!");
+            // Reset form
+            eventNameInput.value = "";
+            eventTimeInput.value = "";
+            eventDescriptionInput.value = "";
+            selectedIcon = "fas fa-ring";
+            selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
+            document
+              .querySelectorAll(".icon-option")
+              .forEach((opt) => opt.classList.remove("selected"));
+            const defaultOpt = document.querySelector(
+              `.icon-option[data-icon="${selectedIcon}"]`
+            );
+            if (defaultOpt) defaultOpt.classList.add("selected");
+          });
+        // Clear all events
+        clearAllBtn.addEventListener("click", () => {
+          if (events.length === 0) {
+            showNotification("No events to clear");
+            return;
           }
-          
-          // Reset form
-          eventNameInput.value = "";
-          eventTimeInput.value = "";
-          eventDescriptionInput.value = "";
-          selectedIcon = "fas fa-ring";
-          selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
-          document.querySelectorAll(".icon-option").forEach((opt) => opt.classList.remove("selected"));
-          const defaultOpt = document.querySelector(`.icon-option[data-icon="${selectedIcon}"]`);
-          if (defaultOpt) defaultOpt.classList.add("selected");
+          if (confirm("Are you sure you want to clear all events?")) {
+            events = [];
+            saveEvents();
+            renderEvents();
+            showNotification("All events cleared successfully!");
+          }
         });
-        
+        // Render events
+        function renderEvents() {
+          // Clear previous
+          timeline.innerHTML = "";
+          if (events.length === 0) {
+            timeline.innerHTML = `
+              <div class="empty-timeline">
+                  <i class="fas fa-calendar-day"></i>
+                  <p>No events added yet. Add your first wedding day event!</p>
+              </div>
+            `;
+            // Remove has-events class to hide the timeline line
+            timeline.classList.remove("has-events");
+            return;
+          }
+          // Add has-events class to show the timeline line
+          timeline.classList.add("has-events");
+          // Sort by time
+          const sorted = [...events].sort((a, b) => {
+            if (!a.time) return 1;
+            if (!b.time) return -1;
+            return a.time.localeCompare(b.time);
+          });
+          // Add each event
+          sorted.forEach((event, index) => {
+            const div = document.createElement("div");
+            div.className = "timeline-item";
+            div.style.animationDelay = `${index * 0.1}s`;
+            div.innerHTML = `
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-icon"><i class="${event.icon}"></i></div>
+                <div class="timeline-title-text">${event.name}</div>
+                <div class="timeline-time">${event.time || "No time"}</div>
+                <div class="timeline-description">${
+                  event.description || "No description"
+                }</div>
+              </div>
+            `;
+            timeline.appendChild(div);
+            // Add click event to show modal
+            div.addEventListener("click", () => {
+              showEventModal(event);
+            });
+          });
+        }
+        // Show event modal
+        function showEventModal(event) {
+          currentEventId = event.id;
+          modalIcon.innerHTML = `<i class="${event.icon}"></i>`;
+          modalTitle.textContent = event.name;
+          modalTime.textContent = event.time || "No time set";
+          modalDescription.textContent = event.description || "No description";
+          modal.style.display = "flex";
+        }
+        // Close modal
+        modalClose.addEventListener("click", () => {
+          modal.style.display = "none";
+        });
+        // Close modal when clicking outside
+        window.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+        // Edit event from modal
+        modalEditBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+          editEvent(currentEventId);
+        });
+        // Delete event from modal
+        modalDeleteBtn.addEventListener("click", () => {
+          modal.style.display = "none";
+          deleteEvent(currentEventId);
+        });
+        function editEvent(id) {
+          const ev = events.find((e) => e.id === id);
+          if (!ev) return;
+          eventNameInput.value = ev.name;
+          eventTimeInput.value = ev.time;
+          eventDescriptionInput.value = ev.description;
+          selectedIcon = ev.icon;
+          selectedIconDisplay.innerHTML = `<i class="${selectedIcon}"></i>`;
+          document
+            .querySelectorAll(".icon-option")
+            .forEach((opt) => opt.classList.remove("selected"));
+          const match = document.querySelector(
+            `.icon-option[data-icon="${selectedIcon}"]`
+          );
+          if (match) match.classList.add("selected");
+          editingEventId = id;
+          addEventBtn.innerHTML = '<i class="fas fa-save"></i> Update Event';
+          // Scroll to form
+          document
+            .querySelector(".add-event-form")
+            .scrollIntoView({ behavior: "smooth" });
+        }
+        function deleteEvent(id) {
+          if (confirm("Are you sure you want to delete this event?")) {
+            events = events.filter((e) => e.id !== id);
+            saveEvents();
+            renderEvents();
+            showNotification("Event deleted successfully!");
+          }
+        }
         // Initialize
         loadEvents();
-        
         // Set default icon
-        document.querySelector(`.icon-option[data-icon="${selectedIcon}"]`)?.classList.add("selected");
+        document
+          .querySelector(`.icon-option[data-icon="${selectedIcon}"]`)
+          ?.classList.add("selected");
       });
     </script>
   </body>
 </html>
-
 
