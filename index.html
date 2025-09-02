@@ -31,34 +31,35 @@
         font-family: "Inter", sans-serif;
         background-color: #fafafa;
         margin: 0;
-        padding: 10px; /* Reduced padding */
+        padding: 10px;
         color: var(--text-color);
       }
       /* Container styling */
       .container {
-        max-width: 800px;
+        max-width: 100%;
         margin: 0 auto;
         background: white;
         border-radius: 15px;
-        padding: 20px; /* Reduced padding */
+        padding: 20px;
         box-shadow: 0 4px 12px rgba(212, 165, 165, 0.15);
+        overflow-x: auto;
       }
       /* Header styling */
       h1 {
         font-family: "Dancing Script", cursive;
-        font-size: 2.2rem; /* Reduced font size */
+        font-size: 2.2rem;
         color: var(--text-color);
         text-align: center;
-        margin-bottom: 20px; /* Reduced margin */
+        margin-bottom: 20px;
         position: relative;
       }
       h1::after {
         content: "";
         position: absolute;
-        bottom: -8px; /* Reduced distance */
+        bottom: -8px;
         left: 50%;
         transform: translateX(-50%);
-        width: 80px; /* Reduced width */
+        width: 80px;
         height: 3px;
         background: linear-gradient(
           90deg,
@@ -68,65 +69,65 @@
         );
         border-radius: 2px;
       }
-      /* Add Event Form Styles - More compact */
+      /* Add Event Form Styles */
       .add-event-form {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px; /* Reduced gap */
-        margin-bottom: 20px; /* Reduced margin */
-        padding: 15px; /* Reduced padding */
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 15px;
         background: var(--accent-color);
-        border-radius: 10px; /* Reduced border radius */
+        border-radius: 10px;
       }
       .form-group {
         flex: 1;
-        min-width: 180px; /* Reduced min width */
+        min-width: 180px;
       }
       label {
         display: block;
-        margin-bottom: 5px; /* Reduced margin */
+        margin-bottom: 5px;
         font-weight: 500;
         color: var(--light-text);
-        font-size: 14px; /* Reduced font size */
+        font-size: 14px;
       }
       input {
         width: 100%;
-        padding: 8px; /* Reduced padding */
+        padding: 8px;
         border: 1px solid var(--border-color);
-        border-radius: 6px; /* Reduced border radius */
-        font-size: 14px; /* Reduced font size */
+        border-radius: 6px;
+        font-size: 14px;
         transition: border-color 0.3s;
       }
-      /* Icon Selector Styles - More compact */
+      /* Icon Selector Styles */
       .icon-selector {
         position: relative;
-        width: 40px; /* Reduced size */
-        height: 40px; /* Reduced size */
+        width: 40px;
+        height: 40px;
       }
       .icon-display {
-        width: 40px; /* Reduced size */
-        height: 40px; /* Reduced size */
+        width: 40px;
+        height: 40px;
         border: 1px solid var(--border-color);
-        border-radius: 6px; /* Reduced border radius */
+        border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px; /* Reduced font size */
+        font-size: 18px;
         cursor: pointer;
         background: white;
       }
       .icon-options {
         position: absolute;
-        top: 45px; /* Adjusted position */
+        top: 45px;
         left: 0;
         background: white;
         border: 1px solid var(--border-color);
-        border-radius: 6px; /* Reduced border radius */
+        border-radius: 6px;
         box-shadow: 0 4px 12px rgba(212, 165, 165, 0.15);
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 5px;
-        padding: 8px; /* Reduced padding */
+        padding: 8px;
         z-index: 100;
         display: none;
       }
@@ -134,15 +135,15 @@
         display: grid;
       }
       .icon-option {
-        width: 35px; /* Reduced size */
-        height: 35px; /* Reduced size */
+        width: 35px;
+        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 4px; /* Reduced border radius */
+        border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.2s;
-        font-size: 14px; /* Reduced font size */
+        font-size: 14px;
       }
       .icon-option:hover {
         background-color: var(--accent-color);
@@ -151,140 +152,120 @@
         background-color: var(--primary-color);
         color: white;
       }
-      /* Button styles - More compact */
+      /* Button styles */
       button {
         background: var(--primary-color);
         color: white;
         border: none;
-        padding: 8px 16px; /* Reduced padding */
-        border-radius: 6px; /* Reduced border radius */
-        font-size: 14px; /* Reduced font size */
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s;
         display: flex;
         align-items: center;
-        gap: 6px; /* Reduced gap */
+        gap: 6px;
         align-self: flex-end;
       }
       button:hover {
         background-color: #c89292;
         transform: translateY(-2px);
       }
-      /* Timeline styles - More compact */
+      /* Timeline styles */
       .timeline-wrapper {
         position: relative;
-        margin: 20px 0; /* Reduced margin */
-        padding: 20px 0; /* Reduced padding */
-        background: linear-gradient(to bottom, #fefefe, #f8f4f4);
-        border-radius: 10px; /* Reduced border radius */
+        margin: 20px 0;
+        padding: 20px;
+        background: linear-gradient(to right, #fefefe, #f8f4f4);
+        border-radius: 10px;
+        overflow-x: auto;
       }
       .timeline-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px; /* Reduced margin */
-        padding: 0 15px; /* Reduced padding */
+        margin-bottom: 20px;
+        padding: 0 15px;
       }
       .timeline-title {
         font-family: "Playfair Display", serif;
-        font-size: 1.3rem; /* Reduced font size */
+        font-size: 1.3rem;
         color: var(--text-color);
       }
       .clear-all-btn {
         background: transparent;
         color: var(--primary-color);
         border: 1px solid var(--primary-color);
-        padding: 6px 12px; /* Reduced padding */
-        font-size: 12px; /* Reduced font size */
-        border-radius: 15px; /* Reduced border radius */
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 15px;
       }
       .clear-all-btn:hover {
         background: var(--primary-color);
         color: white;
       }
-      /* Vertical Timeline - More compact */
+      /* Horizontal Timeline */
       .timeline {
         position: relative;
-        max-width: 800px;
-        margin: 0 auto;
-        min-height: 80px; /* Reduced min height */
+        display: flex;
+        align-items: center;
+        min-height: 220px;
+        padding: 30px 0;
+        width: max-content;
       }
-      /* The vertical line - only show when there are events */
+      /* The horizontal line - only show when there are events */
       .timeline.has-events::before {
         content: "";
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 3px; /* Reduced width */
-        height: 100%;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 3px;
         background: linear-gradient(
-          to bottom,
+          to right,
           rgba(212, 165, 165, 0.1),
           rgba(212, 165, 165, 0.5) 20%,
           rgba(212, 165, 165, 0.5) 80%,
           rgba(212, 165, 165, 0.1)
         );
         border-radius: 2px;
+        transform: translateY(-50%);
+        z-index: 1;
       }
-      /* Timeline items - More compact */
+      /* Timeline items - Horizontal layout */
       .timeline-item {
         position: relative;
-        margin-bottom: 15px; /* Reduced margin */
-        width: 50%;
-        padding: 0 8px; /* Reduced padding */
-        box-sizing: border-box;
+        margin-right: 120px;
+        flex-shrink: 0;
         opacity: 0;
         animation: fadeIn 0.5s forwards;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+        height: 220px;
       }
       @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(15px); /* Reduced distance */
+          transform: translateY(15px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      /* Left side items */
-      .timeline-item:nth-child(odd) {
-        left: 0;
-        text-align: right;
-        padding-right: 8px; /* Reduced padding */
-      }
-      /* Right side items */
-      .timeline-item:nth-child(even) {
-        left: 50%;
-        text-align: left;
-        padding-left: 8px; /* Reduced padding */
-      }
-      /* Timeline dot - More compact */
-      .timeline-dot {
+      /* Timeline circle - Positioned above the line */
+      .timeline-circle {
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 16px; /* Reduced size */
-        height: 16px; /* Reduced size */
-        border-radius: 50%;
-        background: white;
-        border: 2px solid var(--primary-color); /* Reduced border width */
-        box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.2); /* Reduced shadow */
-        z-index: 1;
-      }
-      /* Position dots */
-      .timeline-item:nth-child(odd) .timeline-dot {
-        right: -8px; /* Adjusted position */
-      }
-      .timeline-item:nth-child(even) .timeline-dot {
-        left: -8px; /* Adjusted position */
-      }
-      /* Timeline content - More compact */
-      .timeline-content {
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
         background: white;
         border-radius: 50%;
-        width: 80px; /* Reduced size */
-        height: 80px; /* Reduced size */
-        box-shadow: 0 3px 10px rgba(212, 165, 165, 0.1); /* Reduced shadow */
+        width: 70px;
+        height: 70px;
+        box-shadow: 0 3px 10px rgba(212, 165, 165, 0.1);
         border: 2px solid var(--border-color);
         cursor: pointer;
         transition: all 0.3s ease;
@@ -293,109 +274,141 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        margin: 0 auto;
-        position: relative;
-        overflow: hidden;
+        z-index: 2;
       }
-      .timeline-content:hover {
-        transform: translateY(-3px); /* Reduced movement */
+      .timeline-circle:hover {
+        transform: translateX(-50%) translateY(-3px);
         box-shadow: 0 6px 15px rgba(212, 165, 165, 0.2);
         border-color: var(--primary-color);
       }
-      /* Timeline icon - More compact */
+      /* Timeline connector - vertical line from circle to timeline */
+      .timeline-connector {
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 15%;
+        background: var(--border-color);
+        z-index: 1;
+      }
+      /* Timeline dot - Positioned on the line */
+      .timeline-dot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: white;
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.2);
+        z-index: 3;
+      }
+      /* Timeline title - Positioned below the line */
+      .timeline-title-text {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Playfair Display", serif;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 2px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+      }
+      /* Timeline time - Positioned below the title */
+      .timeline-time {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--secondary-color);
+        color: var(--text-color);
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-size: 10px;
+        display: inline-block;
+      }
+      /* Timeline icon */
       .timeline-icon {
-        width: 28px; /* Reduced size */
-        height: 28px; /* Reduced size */
+        width: 32px;
+        height: 32px;
         background: var(--primary-color);
         color: white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px; /* Reduced font size */
-        margin-bottom: 3px; /* Reduced margin */
-        box-shadow: 0 2px 6px rgba(212, 165, 165, 0.3); /* Reduced shadow */
-      }
-      /* Timeline title - More compact */
-      .timeline-title-text {
-        font-family: "Playfair Display", serif;
-        font-size: 10px; /* Reduced font size */
-        font-weight: 600;
-        color: var(--text-color);
-        margin-bottom: 2px; /* Reduced margin */
-        max-width: 70%; /* Reduced max width */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      /* Timeline time - More compact */
-      .timeline-time {
-        background: var(--secondary-color);
-        color: var(--text-color);
-        padding: 1px 4px; /* Reduced padding */
-        border-radius: 8px; /* Reduced border radius */
-        font-size: 8px; /* Reduced font size */
-        display: inline-block;
+        font-size: 16px;
+        box-shadow: 0 2px 6px rgba(212, 165, 165, 0.3);
       }
       /* Timeline description - hidden in circle, shown in modal */
       .timeline-description {
         display: none;
       }
-      /* Empty timeline message - More compact */
+      /* Empty timeline message */
       .empty-timeline {
         text-align: center;
-        padding: 30px 15px; /* Reduced padding */
+        padding: 30px 15px;
         color: var(--light-text);
+        width: 100%;
       }
       .empty-timeline i {
-        font-size: 36px; /* Reduced font size */
-        margin-bottom: 15px; /* Reduced margin */
+        font-size: 36px;
+        margin-bottom: 15px;
         color: var(--primary-color);
       }
       .empty-timeline p {
-        font-size: 16px; /* Reduced font size */
-        max-width: 350px; /* Reduced max width */
+        font-size: 16px;
+        max-width: 350px;
         margin: 0 auto;
       }
-      /* Preset Events styling - More compact */
+      /* Preset Events styling */
       .preset-events {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px; /* Reduced gap */
-        margin-top: 15px; /* Reduced margin */
-        padding: 12px; /* Reduced padding */
+        gap: 8px;
+        margin-top: 15px;
+        padding: 12px;
         background: var(--accent-color);
-        border-radius: 10px; /* Reduced border radius */
+        border-radius: 10px;
       }
       .preset-event {
-        padding: 6px 12px; /* Reduced padding */
+        padding: 6px 12px;
         background: white;
         border: 1px solid var(--border-color);
-        border-radius: 15px; /* Reduced border radius */
-        font-size: 12px; /* Reduced font size */
+        border-radius: 15px;
+        font-size: 12px;
         cursor: pointer;
         transition: all 0.2s;
         display: flex;
         align-items: center;
-        gap: 5px; /* Reduced gap */
+        gap: 5px;
       }
       .preset-event:hover {
         background: var(--secondary-color);
-        transform: translateY(-1px); /* Reduced movement */
+        transform: translateY(-1px);
       }
-      /* Notification style - More compact */
+      /* Notification style */
       .notification {
         position: fixed;
         top: 20px;
         right: 20px;
         background: white;
-        padding: 12px 16px; /* Reduced padding */
-        border-radius: 8px; /* Reduced border radius */
+        padding: 12px 16px;
+        border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         border-left: 4px solid var(--primary-color);
         display: flex;
         align-items: center;
-        gap: 8px; /* Reduced gap */
+        gap: 8px;
         opacity: 0;
         transform: translateX(400px);
         transition: all 0.3s;
@@ -407,12 +420,12 @@
       }
       .notification i {
         color: var(--primary-color);
-        font-size: 16px; /* Reduced font size */
+        font-size: 16px;
       }
       .notification span {
-        font-size: 14px; /* Reduced font size */
+        font-size: 14px;
       }
-      /* Modal styles - More compact */
+      /* Modal styles */
       .modal {
         display: none;
         position: fixed;
@@ -428,10 +441,10 @@
       }
       .modal-content {
         background-color: white;
-        border-radius: 12px; /* Reduced border radius */
-        padding: 20px; /* Reduced padding */
+        border-radius: 12px;
+        padding: 20px;
         width: 90%;
-        max-width: 450px; /* Reduced max width */
+        max-width: 450px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         position: relative;
         animation: modalFadeIn 0.3s ease;
@@ -440,7 +453,7 @@
       @keyframes modalFadeIn {
         from {
           opacity: 0;
-          transform: translateY(-15px); /* Reduced distance */
+          transform: translateY(-15px);
         }
         to {
           opacity: 1;
@@ -449,14 +462,14 @@
       }
       .modal-close {
         position: absolute;
-        top: 12px; /* Reduced position */
-        right: 12px; /* Reduced position */
-        font-size: 20px; /* Reduced font size */
+        top: 12px;
+        right: 12px;
+        font-size: 20px;
         cursor: pointer;
         color: var(--light-text);
         transition: color 0.2s;
-        width: 26px; /* Reduced size */
-        height: 26px; /* Reduced size */
+        width: 26px;
+        height: 26px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -469,54 +482,54 @@
       .modal-header {
         display: flex;
         align-items: center;
-        margin-bottom: 15px; /* Reduced margin */
-        padding-bottom: 12px; /* Reduced padding */
+        margin-bottom: 15px;
+        padding-bottom: 12px;
         border-bottom: 2px solid var(--border-color);
       }
       .modal-icon {
-        width: 40px; /* Reduced size */
-        height: 40px; /* Reduced size */
+        width: 40px;
+        height: 40px;
         background: var(--primary-color);
         color: white;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px; /* Reduced font size */
-        margin-right: 12px; /* Reduced margin */
-        box-shadow: 0 3px 6px rgba(212, 165, 165, 0.3); /* Reduced shadow */
+        font-size: 20px;
+        margin-right: 12px;
+        box-shadow: 0 3px 6px rgba(212, 165, 165, 0.3);
       }
       .modal-title {
         font-family: "Playfair Display", serif;
-        font-size: 20px; /* Reduced font size */
+        font-size: 20px;
         font-weight: 600;
         color: var(--text-color);
       }
       .modal-time {
         background: var(--primary-color);
         color: white;
-        padding: 6px 12px; /* Reduced padding */
-        border-radius: 15px; /* Reduced border radius */
-        font-size: 12px; /* Reduced font size */
+        padding: 6px 12px;
+        border-radius: 15px;
+        font-size: 12px;
         display: inline-block;
-        margin-bottom: 12px; /* Reduced margin */
+        margin-bottom: 12px;
         box-shadow: 0 2px 4px rgba(212, 165, 165, 0.2);
       }
       .modal-description {
         color: var(--light-text);
-        font-size: 14px; /* Reduced font size */
-        margin-bottom: 20px; /* Reduced margin */
-        line-height: 1.4; /* Reduced line height */
-        min-height: 40px; /* Reduced min height */
+        font-size: 14px;
+        margin-bottom: 20px;
+        line-height: 1.4;
+        min-height: 40px;
       }
       .modal-actions {
         display: flex;
-        gap: 12px; /* Reduced gap */
+        gap: 12px;
         justify-content: center;
       }
       .modal-actions button {
-        padding: 8px 16px; /* Reduced padding */
-        font-size: 12px; /* Reduced font size */
+        padding: 8px 16px;
+        font-size: 12px;
       }
       .edit-btn {
         background: #aed581;
@@ -535,7 +548,6 @@
   <body>
     <div class="container">
       <h1>Wedding Day Timeline</h1>
-      
       <!-- Add Event Form -->
       <div class="add-event-form">
         <div class="form-group">
@@ -605,7 +617,6 @@
           <i class="fas fa-plus"></i> Add Event
         </button>
       </div>
-      
       <!-- Preset Events -->
       <div class="preset-events">
         <div
@@ -675,7 +686,6 @@
           <i class="fas fa-seedling"></i> Bouquet Toss
         </div>
       </div>
-      
       <!-- Timeline -->
       <div class="timeline-wrapper">
         <div class="timeline-header">
@@ -691,14 +701,12 @@
           </div>
         </div>
       </div>
-      
       <!-- Notification -->
       <div class="notification" id="notification">
         <i class="fas fa-check-circle"></i>
         <span id="notification-text"></span>
       </div>
     </div>
-    
     <!-- Event Modal -->
     <div class="modal" id="event-modal">
       <div class="modal-content">
@@ -723,13 +731,13 @@
         </div>
       </div>
     </div>
-    
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const timeline = document.getElementById("timeline");
         const eventNameInput = document.getElementById("event-name");
         const eventTimeInput = document.getElementById("event-time");
-        const eventDescriptionInput = document.getElementById("event-description");
+        const eventDescriptionInput =
+          document.getElementById("event-description");
         const addEventBtn = document.getElementById("add-event-btn");
         const selectedIconDisplay = document.getElementById("selected-icon");
         const iconOptions = document.getElementById("icon-options");
@@ -904,15 +912,16 @@
             div.className = "timeline-item";
             div.style.animationDelay = `${index * 0.1}s`;
             div.innerHTML = `
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
+              <div class="timeline-circle">
                 <div class="timeline-icon"><i class="${event.icon}"></i></div>
-                <div class="timeline-title-text">${event.name}</div>
-                <div class="timeline-time">${event.time || "No time"}</div>
-                <div class="timeline-description">${
-                  event.description || "No description"
-                }</div>
               </div>
+              <div class="timeline-connector"></div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-title-text">${event.name}</div>
+              <div class="timeline-time">${event.time || "No time"}</div>
+              <div class="timeline-description">${
+                event.description || "No description"
+              }</div>
             `;
             timeline.appendChild(div);
             // Add click event to show modal
@@ -990,4 +999,3 @@
     </script>
   </body>
 </html>
-
