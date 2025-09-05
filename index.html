@@ -871,18 +871,18 @@
             if (defaultOpt) defaultOpt.classList.add("selected");
           });
         // Clear all events
-        clearAllBtn.addEventListener("click", () => {
-          if (events.length === 0) {
-            showNotification("No events to clear");
-            return;
-          }
-          if (confirm("Are you sure you want to clear all events?")) {
-            events = [];
-            saveEvents();
-            renderEvents();
-            showNotification("All events cleared successfully!");
-          }
-        });
+        // Clear all events
+clearAllBtn.addEventListener("click", () => {
+  if (events.length === 0) {
+    showNotification("No events to clear");
+    return;
+  }
+  // Remove the confirmation popup - directly clear all events
+  events = [];
+  saveEvents();
+  renderEvents();
+  showNotification("All events cleared successfully!");
+});
         // Render events
         function renderEvents() {
           // Clear previous
@@ -999,4 +999,5 @@
     </script>
   </body>
 </html>
+
 
